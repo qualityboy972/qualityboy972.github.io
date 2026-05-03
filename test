@@ -1,1 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>구미 날씨 — 2026년 5월 4일</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f4f4f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+    .location { font-size: 22px; font-weight: 600; color: #1a1a1a; }
+    .date { font-size: 13px; color: #888; margin-top: 2px; }
+    .temps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+    .temp-box {
+      background: #f7f7f4;
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .temp-label { font-size: 12px; color: #999; margin-bottom: 6px; }
+    .temp-value { font-size: 26px; font-weight: 600; }
+    .temp-value.high { color: #BA7517; }
+    .temp-value.low  { color: #378ADD; }
+    .temp-value.diff { color: #444; }
+    .timeline {
+      background: #f7f7f4;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .timeline-title { font-size: 12px; color: #999; margin-bottom: 12px; }
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      text-align: center;
+    }
+    .slot-label { font-size: 11px; color: #bbb; margin-bottom: 6px; }
+    .slot-icon { font-size: 22px; margin-bottom: 4px; }
+    .slot-text { font-size: 12px; font-weight: 500; color: #333; }
+    .alert {
+      background: #EBF4FD;
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      font-size: 13px;
+      color: #185FA5;
+      line-height: 1.6;
+    }
+    .source { font-size: 11px; color: #ccc; margin-top: 1.25rem; text-align: right; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <div>
+        <div class="location">📍 구미, 경상북도</div>
+        <div class="date">2026년 5월 4일 (월) — 내일 날씨 예보</div>
+      </div>
+    </div>
 
+    <div class="temps">
+      <div class="temp-box">
+        <div class="temp-label">최고 기온</div>
+        <div class="temp-value high">21°C</div>
+      </div>
+      <div class="temp-box">
+        <div class="temp-label">최저 기온</div>
+        <div class="temp-value low">9°C</div>
+      </div>
+      <div class="temp-box">
+        <div class="temp-label">일교차</div>
+        <div class="temp-value diff">12°C</div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-title">시간대별 예보</div>
+      <div class="timeline-grid">
+        <div>
+          <div class="slot-label">새벽</div>
+          <div class="slot-icon">🌧️</div>
+          <div class="slot-text">비</div>
+        </div>
+        <div>
+          <div class="slot-label">오전</div>
+          <div class="slot-icon">☁️</div>
+          <div class="slot-text">흐림</div>
+        </div>
+        <div>
+          <div class="slot-label">낮</div>
+          <div class="slot-icon">☀️</div>
+          <div class="slot-text">맑음</div>
+        </div>
+        <div>
+          <div class="slot-label">저녁</div>
+          <div class="slot-icon">🌤️</div>
+          <div class="slot-text">구름 조금</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert">
+      ℹ️ 일교차 12°C로 큼 — 겉옷 필수. 오전 외출 시 우산을 챙기세요.
+    </div>
+
+    <div class="source">출처: korea247.kr · 기상청 날씨누리</div>
+  </div>
+</body>
+</html>
