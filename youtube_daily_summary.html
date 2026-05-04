@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>유튜브 일일 요약 — 2026-05-03</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #f5f5f3;
+    color: #1a1a1a;
+    padding: 24px 16px;
+    min-height: 100vh;
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .title { font-size: 17px; font-weight: 600; color: #111; }
+  .date { font-size: 12px; color: #888; }
+  .ch-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .ch-card {
+    background: #fff;
+    border: 1.5px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    user-select: none;
+  }
+  .ch-card:hover { border-color: #b0c8f0; }
+  .ch-card.sel { border-color: #3b7dd8; background: #EBF3FD; }
+  .ch-name { font-size: 11px; color: #888; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ch-card.sel .ch-name { color: #2563a8; }
+  .ch-cnt { font-size: 24px; font-weight: 600; color: #111; line-height: 1.1; }
+  .ch-card.sel .ch-cnt { color: #1d4ed8; }
+  .ch-label { font-size: 11px; color: #aaa; margin-top: 2px; }
+  .ch-card.sel .ch-label { color: #4a7fc1; }
+  .divider { height: 1px; background: #e8e8e8; margin-bottom: 12px; }
+  .vitem {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    align-items: flex-start;
+  }
+  .vitem:last-child { border-bottom: none; }
+  .vitem.hidden { display: none; }
+  .thumb {
+    flex: 0 0 140px;
+    height: 79px;
+    border-radius: 7px;
+    overflow: hidden;
+    background: #e8e8e8;
+    display: block;
+  }
+  .thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.2s;
+  }
+  .thumb:hover img { opacity: 0.85; }
+  .vinfo { flex: 1; min-width: 0; }
+  .badge {
+    display: inline-block; font-size: 10px; font-weight: 600;
+    padding: 2px 8px; border-radius: 12px; margin-bottom: 5px;
+  }
+  .b-etf   { background: #dbeafe; color: #1e40af; }
+  .b-jang  { background: #ede9fe; color: #5b21b6; }
+  .b-gj    { background: #dcfce7; color: #166534; }
+  .vtitle { font-size: 13px; font-weight: 600; line-height: 1.45; color: #111; margin-bottom: 4px; }
+  .vtitle a { color: inherit; text-decoration: none; }
+  .vtitle a:hover { text-decoration: underline; color: #2563eb; }
+  .vmeta {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    font-size: 11px; color: #999; margin-bottom: 5px;
+  }
+  .vmeta span::before { content: "· "; }
+  .vmeta span:first-child::before { content: ""; }
+  .vsummary {
+    font-size: 12px; color: #666; line-height: 1.6;
+    display: -webkit-box; -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; overflow: hidden;
+  }
+  @media (max-width: 500px) {
+    .ch-grid { grid-template-columns: repeat(2, 1fr); }
+    .thumb { flex: 0 0 100px; height: 56px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <span class="title">📺 유튜브 일일 요약</span>
+    <span class="date">2026-05-03 · 최근 24시간 · 신규 5개</span>
+  </div>
+  <div class="ch-grid">
+    <div class="ch-card sel" onclick="filter('all',this)">
+      <div class="ch-name">전체</div>
+      <div class="ch-cnt">5</div>
+      <div class="ch-label">신규 영상</div>
+    </div>
+    <div class="ch-card" onclick="filter('etf',this)">
+      <div class="ch-name">ETF 아는 형</div>
+      <div class="ch-cnt">1</div>
+      <div class="ch-label">신규 영상</div>
+    </div>
+    <div class="ch-card" onclick="filter('jang',this)">
+      <div class="ch-name">장르만 여의도</div>
+      <div class="ch-cnt">3</div>
+      <div class="ch-label">신규 영상</div>
+    </div>
+    <div class="ch-card" onclick="filter('gj',this)">
+      <div class="ch-name">경자스톡</div>
+      <div class="ch-cnt">1</div>
+      <div class="ch-label">신규 영상</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div id="vlist">
+    <div class="vitem" data-ch="jang">
+      <a class="thumb" href="https://www.youtube.com/watch?v=28gsh_4ISqk" target="_blank">
+        <img src="https://i.ytimg.com/vi/28gsh_4ISqk/hqdefault.jpg" alt="썸네일">
+      </a>
+      <div class="vinfo">
+        <span class="badge b-jang">장르만 여의도</span>
+        <div class="vtitle"><a href="https://www.youtube.com/watch?v=28gsh_4ISqk" target="_blank">'핵심 장치에 중국산 쓰는' 국가대표 AI? "네이버, 해선 안 될 일 해"</a></div>
+        <div class="vmeta"><span>2시간 전</span><span>5,800 조회</span><span>8분 38초</span></div>
+        <div class="vsummary">네이버 AI 인프라 핵심 장치에 중국산 부품 사용 의혹. 국가 안보·데이터 주권 측면에서 강하게 비판하며 AI 클라우드 국산화의 중요성 강조.</div>
+      </div>
+    </div>
+    <div class="vitem" data-ch="jang">
+      <a class="thumb" href="https://www.youtube.com/watch?v=XMzxus-7RGA" target="_blank">
+        <img src="https://i.ytimg.com/vi/XMzxus-7RGA/hqdefault.jpg" alt="썸네일">
+      </a>
+      <div class="vinfo">
+        <span class="badge b-jang">장르만 여의도</span>
+        <div class="vtitle"><a href="https://www.youtube.com/watch?v=XMzxus-7RGA" target="_blank">사과 거부 김용남, 조국에 일갈 "'적반하장'‥끝까지 완주할 것"</a></div>
+        <div class="vmeta"><span>5시간 전</span><span>15분</span></div>
+        <div class="vsummary">김용남이 조국 측 사과 요구를 "적반하장"이라 반박하며 완주 의지 표명. 당내 갈등 및 정치 공방 상황 전달.</div>
+      </div>
+    </div>
+    <div class="vitem" data-ch="jang">
+      <a class="thumb" href="https://www.youtube.com/watch?v=nE6O_dYrHvM" target="_blank">
+        <img src="https://i.ytimg.com/vi/nE6O_dYrHvM/hqdefault.jpg" alt="썸네일">
+      </a>
+      <div class="vinfo">
+        <span class="badge b-jang">장르만 여의도</span>
+        <div class="vtitle"><a href="https://www.youtube.com/watch?v=nE6O_dYrHvM" target="_blank">"유튜브 보고..평생 모은 노후자금 다 날렸다" 5060 울린 사기꾼 정체</a></div>
+        <div class="vmeta"><span>7시간 전</span><span>4만 조회</span><span>26분</span></div>
+        <div class="vsummary">유튜브 투자 콘텐츠 사기로 5060대 노후 자금 전액 손실 사례 탐사 보도. 불법 리딩방 수법 해부 및 피해 실태 고발. 법적 처벌 현황·예방법 소개.</div>
+      </div>
+    </div>
+    <div class="vitem" data-ch="etf">
+      <a class="thumb" href="https://www.youtube.com/watch?v=CaG1oI_SjnA" target="_blank">
+        <img src="https://i.ytimg.com/vi/CaG1oI_SjnA/hqdefault.jpg" alt="썸네일">
+      </a>
+      <div class="vinfo">
+        <span class="badge b-etf">ETF 아는 형</span>
+        <div class="vtitle"><a href="https://www.youtube.com/watch?v=CaG1oI_SjnA" target="_blank">코스피 200, S&amp;P500 아니다! 지금 내 계좌를 불려줄 ETF는 이것 | 박승진</a></div>
+        <div class="vmeta"><span>11시간 전</span><span>17,877 조회</span><span>20분 9초</span></div>
+        <div class="vsummary">ETF 처방전. 이번 주 국내·미국 수익률 상위/하위 ETF 정리, ETF 거래량 급증의 변동성 팩트체크, 다음 주 AI 전력·인프라 테마 ETF 주목.</div>
+      </div>
+    </div>
+    <div class="vitem" data-ch="gj">
+      <a class="thumb" href="https://www.youtube.com/watch?v=gCa-rTE-Cv0" target="_blank">
+        <img src="https://i.ytimg.com/vi/gCa-rTE-Cv0/hqdefault.jpg" alt="썸네일">
+      </a>
+      <div class="vinfo">
+        <span class="badge b-gj">경자스톡</span>
+        <div class="vtitle"><a href="https://www.youtube.com/watch?v=gCa-rTE-Cv0" target="_blank">주식투자일기, 4월 마지막주 | ISA·미래에셋증권 계좌 1년 정산 | 월배당 ETF 분배락</a></div>
+        <div class="vmeta"><span>2시간 전</span><span>2,300 조회</span><span>12분 8초</span></div>
+        <div class="vsummary">ISA 계좌와 미래에셋증권 계좌 1년 운용 성과 정산 비교. 4월 월배당 ETF 분배락 및 수령 내역 공개.</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function filter(ch, el) {
+  document.querySelectorAll('.ch-card').forEach(c => c.classList.remove('sel'));
+  if (el) el.classList.add('sel');
+  document.querySelectorAll('.vitem').forEach(v => {
+    v.classList.toggle('hidden', ch !== 'all' && v.dataset.ch !== ch);
+  });
+}
+</script>
+</body>
+</html>
